@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: go-web-app
+spec:
+  source:
+    repoURL: https://github.com/your-username/go-web-app
+    targetRevision: main
+    path: helm/go-web-app-chart
+    helm:
+      valueFiles:
+        - values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: go-web-app
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

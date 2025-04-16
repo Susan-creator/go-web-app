@@ -1,0 +1,15 @@
+name: CD Trigger (for Argo CD)
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'helm/**'
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log Argo CD Sync
+        run: echo "Helm chart updated — Argo CD will pick up the change."
